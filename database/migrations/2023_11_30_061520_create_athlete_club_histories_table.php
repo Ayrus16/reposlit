@@ -11,12 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('athlete_histories', function (Blueprint $table) {
-            $table->id();
+        Schema::create('athlete_club_histories', function (Blueprint $table) {
+            $table->id()->primaryKey();
             $table->foreignId('athlete_id');
-            $table->date('date');
-            $table->string('type');
-            $table->string('decscrition');
+            $table->foreignId('club_id');
+            $table->date('date_started');
+            $table->date('date_ended');
             $table->timestamps();
         });
     }
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('athlete_histories');
+        Schema::dropIfExists('athlete_club_histories');
     }
 };
