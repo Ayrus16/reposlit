@@ -13,6 +13,6 @@ class AthleteClubHistory extends Model
         return $this->belongsTo(Athlete::class);
     }
     public function club(){
-        return $this->belongsTo(AthleteClubHistory::class);
+        return $this->belongsTo(Club::class);
     }
 }

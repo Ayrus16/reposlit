@@ -15,14 +15,16 @@ return new class extends Migration
             $table->id()->primaryKey();
             $table->timestamps();
             $table->string('name');
+            $table->integer('gender')->nullable();
             $table->date('date_of_birth');
-            $table->integer('body_height')->nullable();
-            $table->integer('body_weight')->nullable();
+            $table->integer('body_height');
+            $table->integer('body_weight');
+            $table->integer('dribling');
+            $table->integer('passing');
+            $table->integer('shooting');
+            $table->integer('endurance');
+            $table->string('recommendation_position')->nullable();
             $table->integer('photo_path')->nullable();
-            $table->integer('dribling')->nullable();
-            $table->integer('passing')->nullable();
-            $table->integer('shooting')->nullable();
-            $table->integer('endurance')->nullable();
         });
     }
 

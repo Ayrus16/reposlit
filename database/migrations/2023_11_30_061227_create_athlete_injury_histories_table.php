@@ -15,9 +15,9 @@ return new class extends Migration
             $table->id()->primaryKey();
             $table->foreignId('athlete_id');
             $table->date('date_started');
-            $table->date('date_ended');
+            $table->date('date_ended')->nullable();
             $table->string('type');
-            $table->string('description');
+            $table->string('description')->nullable();
             $table->timestamps();
         });
     }

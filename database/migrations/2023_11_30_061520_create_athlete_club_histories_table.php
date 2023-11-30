@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignId('athlete_id');
             $table->foreignId('club_id');
             $table->date('date_started');
-            $table->date('date_ended');
+            $table->date('date_ended')->nullable();
             $table->timestamps();
         });
     }
