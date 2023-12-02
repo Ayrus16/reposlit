@@ -11,10 +11,12 @@ use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Select;
+use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Columns\SpatieMediaLibraryImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Contracts\HasTable;
 use Filament\Tables\Table;
@@ -33,6 +35,28 @@ class AthleteResource extends Resource
     {
         return $form
             ->schema([
+                
+
+                Section::make('Photo')
+                ->columns([
+                    'sm' => 1,
+                    'xl' => 2,
+                    '2xl' => 2,
+                ])
+                ->schema([
+                    SpatieMediaLibraryFileUpload::make('photo')
+                        ->columnSpanFull()
+                        ->required()
+                        ->moveFiles()
+                        ->image()
+                        ->imageEditor()
+                        ->imageEditorAspectRatios([
+                            '1:1',
+                        ])
+                        ->imageCropAspectRatio('1:1')
+                        ->imageResizeTargetWidth('1080')
+                        ->imageResizeTargetHeight('1080'),
+                ]),
                 Section::make('Biodata')
                 ->columns([
                     'sm' => 1,
@@ -42,7 +66,8 @@ class AthleteResource extends Resource
                 ->description('Biodata of the athlete')
                 ->schema([
                     TextInput::make('recommendation_position')
-                        ->disabled(),
+                        ->disabled()
+                        ->columnSpanFull(),
                     TextInput::make('name')
                         ->required()
                         ->columnSpanFull(),
@@ -166,6 +191,7 @@ class AthleteResource extends Resource
                         );
                     }
                 ),
+                SpatieMediaLibraryImageColumn::make('photo'),
                 TextColumn::make('name')->sortable()->searchable(),
                 TextColumn::make('date_of_birth'),
             ])
