@@ -35,9 +35,7 @@ class AthleteResource extends Resource
     {
         return $form
             ->schema([
-                
-
-                Section::make('Photo')
+                Section::make()
                 ->columns([
                     'sm' => 1,
                     'xl' => 2,
@@ -57,12 +55,16 @@ class AthleteResource extends Resource
                         ->imageResizeTargetWidth('1080')
                         ->imageResizeTargetHeight('1080'),
                 ]),
+                
+
+                
                 Section::make('Biodata')
                 ->columns([
                     'sm' => 1,
                     'xl' => 2,
                     '2xl' => 2,
                 ])
+
                 ->description('Biodata of the athlete')
                 ->schema([
                     TextInput::make('recommendation_position')
@@ -118,6 +120,7 @@ class AthleteResource extends Resource
                         ->minValue(1)
                         ->required(),
                 ]),
+                
 
                 Repeater::make('athleteInjuryHistory')
                 ->relationship()
